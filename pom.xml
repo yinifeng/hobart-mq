@@ -9,6 +9,8 @@
     <modules>
         <module>rabbitmq-api</module>
         <module>rabbitmq-spring</module>
+        <module>rabbitmq-springboot-producer</module>
+        <module>rabbitmq-springboot-consumer</module>
     </modules>
     <name>hobart-mq</name>
     <description>Demo project for Spring Boot</description>
