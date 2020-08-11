@@ -1,5 +1,6 @@
 package com.hobart.mq.rabbit.producer;
 
+import com.hobart.mq.rabbit.domain.Order;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,14 @@ public class RabbitSender {
         //业务id + 时间戳
         CorrelationData correlationData = new CorrelationData("1234567890");
         
-        rabbitTemplate.convertAndSend("exchange-1", "spring.hello",msg,correlationData);
+        rabbitTemplate.convertAndSend("exchange-1", "springboot.hello",msg,correlationData);
+    }
+    
+    
+    public void sendOrder(Order order){
+        //标识全局唯一消息，实际业务开发很重要区分消息全局唯一性
+        //业务id + 时间戳
+        CorrelationData correlationData = new CorrelationData("109343432453");
+        rabbitTemplate.convertAndSend("exchange-2", "springboot.abc",order,correlationData);
     }
 }

@@ -1,5 +1,6 @@
 package com.hobart.mq.rabbit;
 
+import com.hobart.mq.rabbit.domain.Order;
 import com.hobart.mq.rabbit.producer.RabbitSender;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,5 +25,13 @@ public class RabbitMqProducerAppTest {
         properties.put("number","123456");
         properties.put("send_time",new Timestamp(System.currentTimeMillis()).toString());
         rabbitSender.send("Hello RabbitMQ For SpringBoot",properties);
+    }
+    
+    @Test
+    public void testSend2() throws Exception{
+        testSend1();
+        
+        Order order = new Order("1001","第一个订单");
+        rabbitSender.sendOrder(order);
     }
 }
